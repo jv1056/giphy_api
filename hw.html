@@ -18,6 +18,11 @@
 
     </div>
 
+    <form id="add">
+      Add your favorite drag queen:
+      <input type="text" name="queen" value="">
+    </form>
+
     <div class="gifs">
 
     </div>
@@ -39,7 +44,7 @@
     <script>
 
     $(document).ready(function(){
-      var topics = ["alaska", "willam", "latrice", "valentina", "ador", "alyssa", "katya"];
+      var topics = ["alaska", "willam", "latrice", "valentina", "adore", "alyssa", "katya"];
       $('.buttons').empty();
 
       for (var i = 0; i < topics.length; i++){
@@ -51,16 +56,38 @@
       }
     $('.button').on("click", function(){
       var selected = this;
-      var search = selected.val();
+      var search = $(selected).attr("queen");
 
-      var urlQuery = "https://api.giphy.com/v1/gifs/search?q=ryan+gosling+" + search + "&api_key=KomwTZ9Sc06xV0gZ20JVjE2cIZTcFY97&limit=10"
+      var urlQuery = "https://api.giphy.com/v1/gifs/search?q=drag+race+" + search + "&api_key=KomwTZ9Sc06xV0gZ20JVjE2cIZTcFY97&limit=10";
 
       $.ajax({
         url: urlQuery,
         method: "GET"
       }).then(function(response){
         console.log(response);
-      
+        $('.gifs').empty();
+        var gifsArr = response.data;
+        for (var i = 0; i < gifsArr.length; i++){
+          var div = $('<div>');
+          var p = $('<p>');
+          var image = $('<img>');
+          var gif = gifsArr[i];
+          var rating = gif.rating;
+          var gifAnimated = gif.images.fixed_height_small.url;
+          $(p).append("rating: " + rating);
+          $(image).attr("src", gifAnimated);
+          $(div).append(p);
+          $(div).append(image);
+          $('.gifs').append(div);
+
+        }
+
+
+
+
+      });
+
+      $('#add').on("click", function(event){
 
       })
     });

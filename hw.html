@@ -56,10 +56,8 @@
       topic.text(topics[i]);
       $('.buttons').append(topic);
       }
-    }
 
-    $(document).ready(function(){
-      make_buttons();
+
     $('.button').on("click", function(){
       var selected = this;
       var search = $(selected).attr("queen");
@@ -92,6 +90,7 @@
 
 
       });
+    });
 
       $("#save-queen").on("click", function(event) {
 
@@ -103,9 +102,10 @@
       make_buttons();
       });
 
-      });
+      };
+      make_buttons();
 
-    });
+
 
 
 

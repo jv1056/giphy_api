@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="buttons">
+
+    </div>
+
+    <div class="gifs">
+
+    </div>
+
+
+
+
+<!-- //iteratre through arrray. make buttons dynamically. append those button to some place in html.
+//button will have data of their value. us value of button that was clicked ot make url query request
+//load those 10 into the page. animated version. and rating
+//make it possible to add buttons. -->
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+    $(document).ready(function(){
+      var topics = ["alaska", "willam", "latrice", "valentina", "ador", "alyssa", "katya"];
+      $('.buttons').empty();
+
+      for (var i = 0; i < topics.length; i++){
+        var topic = $("<button>");
+        topic.attr("queen", topics[i]);
+        topic.addClass("button");
+        topic.text(topics[i]);
+        $('.buttons').append(topic);
+      }
+    $('.button').on("click", function(){
+      var selected = this;
+      var search = selected.val();
+
+      var urlQuery = "https://api.giphy.com/v1/gifs/search?q=ryan+gosling+" + search + "&api_key=KomwTZ9Sc06xV0gZ20JVjE2cIZTcFY97&limit=10"
+
+      $.ajax({
+        url: urlQuery,
+        method: "GET"
+      }).then(function(response){
+        console.log(response);
+      
+
+      })
+    });
+
+    });
+
+
+
+    </script>
+
+  </body>
+</html>
